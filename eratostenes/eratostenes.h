@@ -2,6 +2,7 @@
 #define ERATOSTENES_H
 
 #include <stdlib.h>
+#include <stdio.h>
 
 class eratostenes
 {
@@ -10,9 +11,9 @@ private:
   int* array;
 
   int* find(unsigned int number);
-  void mark_multiple(int number);
-  int next_prime(int current_prime);
-  bool out_of_bounds(int number);
+  void mark_multiple(unsigned int number);
+  unsigned int next_prime(unsigned int current_prime);
+  bool out_of_bounds(unsigned int number);
   void print_non_marked();
 public:
   eratostenes(int max);

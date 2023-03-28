@@ -9,23 +9,35 @@ eratostenes::~eratostenes(){
   free(this->array);
   free(this);
 }
-int* eratostenes::find(int number){
-  return this->array + number - 2;
+int* eratostenes::find(unsigned int number){
+  if (!this->out_of_bounds(number))
+    return this->array + number - 2;
+  return NULL;
 }
-void eratostenes::mark_multiple(int number){
-
+void eratostenes::mark_multiple(unsigned int number){
+  for (unsigned int i = number * 2; !this->out_of_bounds(i); i += number)
+    this->find(i)[0] = 1;  
 }
-int eratostenes::next_prime(int current_prime){
-
+unsigned int eratostenes::next_prime(unsigned int current_prime){
+  for (unsigned int i = current_prime + 1; !this->out_of_bounds(i); i++)
+    if (this->find(i)[0] == 0) return i;      
 }
-bool eratostenes::out_of_bounds(int number){
-
+bool eratostenes::out_of_bounds(unsigned int number){
+  return number > this->size+1;
 }
 void eratostenes::print_non_marked(){
-
+  printf("[");
+  for (unsigned int i = 0; !this->out_of_bounds(i); i++)
+    if (this->find(i)[0] == 0)
+      printf(" %u", i);
+  printf(" ]\n");  
 }
 void eratostenes::run(){
-
+  for (unsigned int i = 0; !this->out_of_bounds(i); i++)
+  {
+    /* code */
+  }
+  
 }
 void eratostenes::print(){
 
